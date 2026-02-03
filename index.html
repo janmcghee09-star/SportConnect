@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Sports Platform - Interactive Wireframes</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Warm, welcoming color palette */
+            --primary: #FF6B35;
+            --primary-light: #FF8C5A;
+            --primary-dark: #E55A2B;
+            --secondary: #4ECDC4;
+            --secondary-light: #7ED8D2;
+            --accent: #FFE66D;
+            --success: #95E1D3;
+            --bg-cream: #FFF8F0;
+            --bg-white: #FFFFFF;
+            --text-dark: #2D3142;
+            --text-medium: #5A5F73;
+            --text-light: #8B91A7;
+            --border: #E8E4DC;
+            --shadow: rgba(45, 49, 66, 0.08);
+            --shadow-hover: rgba(45, 49, 66, 0.12);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, var(--bg-cream) 0%, #FFF5E8 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fraunces', serif;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: var(--text-medium);
+            font-size: 1.1rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 0.8s ease-out 0.2s backwards;
+        }
+
+        .nav-tab {
+            padding: 1rem 2rem;
+            background: var(--bg-white);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            color: var(--text-medium);
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+        }
+
+        .wireframe-container {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .wireframe-container.active {
+            display: block;
+        }
+
+        .phone-frame {
+            max-width: 420px;
+            margin: 0 auto;
+            background: var(--bg-white);
+            border-radius: 32px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 60px rgba(45, 49, 66, 0.15);
+            border: 8px solid var(--text-dark);
+            position: relative;
+        }
+
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 24px;
+            background: var(--text-dark);
+            border-radius: 0 0 16px 16px;
+        }
+
+        .screen {
+            background: var(--bg-cream);
+            border-radius: 20px;
+            min-height: 600px;
+            padding: 2rem 1.5rem;
+            margin-top: 1rem;
+            overflow-y: auto;
+            max-height: 700px;
+        }
+
+        .screen-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-white);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px var(--shadow);
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px var(--shadow-hover);
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            margin: 0 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 3px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .screen-title {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .screen-subtitle {
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 8px 24px var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .card.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #FFF 0%, #FFF8F0 100%);
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.15);
+        }
+
+        .option-card {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .option-card::after {
+            content: '';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .option-card.selected::after {
+            background: var(--primary);
+            border-color: var(--primary);
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+
+        .badge-secondary {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            color: white;
+        }
+
+        .badge-success {
+            background: var(--success);
+            color: var(--text-dark);
+        }
+
+        .badge-accent {
+            background: var(--accent);
+            color: var(--text-dark);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--bg-white);
+            color: var(--text-dark);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-cream) 100%);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .social-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .indicator-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .indicator-high {
+            background: linear-gradient(135deg, var(--success) 0%, #B8EFE6 100%);
+        }
+
+        .indicator-medium {
+            background: linear-gradient(135deg, var(--accent) 0%, #FFF0B3 100%);
+        }
+
+        .slider-container {
+            margin: 1.5rem 0;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-medium);
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--border);
+            appearance: none;
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+        }
+
+        .testimonial {
+            background: linear-gradient(135deg, #FFF 0%, var(--bg-cream) 100%);
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--text-medium);
+        }
+
+        .testimonial-author {
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .activity-image {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .feeling-selector {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .feeling-btn {
+            padding: 1rem 0.5rem;
+            background: var(--bg-white);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .feeling-btn:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .feeling-btn.selected {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .feeling-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .feeling-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .celebration-card {
+            background: linear-gradient(135deg, var(--success) 0%, #B8EFE6 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .celebration-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-indicator {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .step-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            transition: all 0.3s;
+        }
+
+        .step-dot.active {
+            background: var(--primary);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, var(--accent) 0%, #FFF0B3 100%);
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border-left: 4px solid #F4D03F;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .progress-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary) 0deg, var(--primary) 270deg, var(--border) 270deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto;
+            position: relative;
+        }
+
+        .progress-circle::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--bg-white);
+            border-radius: 50%;
+        }
+
+        .progress-text {
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Social Sports Platform Wireframes</h1>
+            <p>Interactive prototypes of core user flows</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showWireframe('flow1')">Flow 1: Onboarding → First Activity</button>
+            <button class="nav-tab" onclick="showWireframe('flow2')">Flow 2: Activity Detail & Culture Preview</button>
+            <button class="nav-tab" onclick="showWireframe('flow3')">Flow 3: Post-Activity Belonging Feedback</button>
+        </div>
+
+        <!-- FLOW 1: Onboarding to First Activity Selection -->
+        <div id="flow1" class="wireframe-container active">
+            <div class="phone-frame">
+                <div class="screen" id="flow1-screen">
+                    <!-- Screen 1: Welcome -->
+                    <div class="flow1-step step-1">
+                        <div class="step-indicator">
+                            <div class="step-dots">
+                                <div class="step-dot active"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin: 2rem 0;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🤝</div>
+                            <h2 class="screen-title">Welcome to SportConnect</h2>
+                            <p class="screen-subtitle">Find your people, not just your sport. We help you discover local activities where you'll feel welcome and valued.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-dark);">What makes us different:</h3>
+                            <div class="social-indicator">
+                                <div class="indicator-icon indicator-high">✓</div>
+                                <div>
+                                    <strong style="display: block; color: var(--text-dark);">Social fit matching</strong>
+                                    <small style="color: var(--text-light);">Find groups that match your vibe</small>
+                                </div>
+                            </div>
+                            <div class="social-indicator">
+                                <div class="indicator-icon indicator-high">✓</div>
+                                <div>
+                                    <strong style="display: block; color: var(--text-dark);">Welcoming culture guarantee</strong>
+                                    <small style="color: var(--text-light);">Only inclusive, friendly groups</small>
+                                </div>
+                            </div>
+                            <div class="social-indicator">
+                                <div class="indicator-icon indicator-high">✓</div>
+                                <div>
+                                    <strong style="display: block; color: var(--text-dark);">Belonging feedback</strong>
+                                    <small style="color: var(--text-light);">Know you're wanted and valued</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="nextStep('flow1', 2)" style="margin-top: 2rem;">Let's get started</button>
+                    </div>
+
+                    <!-- Screen 2: Sport Preferences -->
+                    <div class="flow1-step step-2" style="display: none;">
+                        <div class="screen-header">
+                            <button class="back-btn" onclick="nextStep('flow1', 1)">←</button>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 16%;"></div>
+                            </div>
+                            <div style="width: 36px;"></div>
+                        </div>
+
+                        <div class="step-indicator">
+                            <div class="step-dots">
+                                <div class="step-dot"></div>
+                                <div class="step-dot active"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                            </div>
+                        </div>
+
+                        <h2 class="screen-title">What sports interest you?</h2>
+                        <p class="screen-subtitle">Select all that you'd like to try (or might already play)</p>
+
+                        <div class="card option-card" onclick="toggleSport(this)">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="font-size: 2rem;">🌟</div>
+                                <div style="flex: 1;">
+                                    <h3 style="font-size: 1.1rem; margin: 0; padding-right: 2rem;">I'm open to anything!</h3>
+                                    <p style="color: var(--text-medium); font-size: 0.85rem; margin: 0.25rem 0 0;">Show me all activities - I'm here to explore</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-top: 1rem;">
+                            <div class="card option-card selected" onclick="toggleSport(this)" style="padding: 1rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏐</div>
+                                    <div style="font-weight: 600; color: var(--text-dark);">Volleyball</div>
+                                </div>
+                            </div>
+
+                            <div class="card option-card" onclick="toggleSport(this)" style="padding: 1rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚽</div>
+                                    <div style="font-weight: 600; color: var(--text-dark);">Soccer</div>
+                                </div>
+                            </div>
+
+                            <div class="card option-card selected" onclick="toggleSport(this)" style="padding: 1rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏀</div>
+                                    <div style="font-weight: 600; color: var(--text-dark);">Basketball</div>
+                                </div>
+                            </div>
+
+                            <div class="card option-card" onclick="toggleSport(this)" style="padding: 1rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏈</div>
+                                    <div style="font-weight: 600; color: var(--text-dark);">Football</div>
+                                </div>
+                            </div>
+
+                            <div class="card option-card" onclick="toggleSport(this)" style="padding: 1rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🚴</div>
+                                    <div style="font-weight: 600; color: var(--text-dark);">Cycling</div>
+                                </div>
+                            </div>
+
+                            <div class="card option-card" onclick="toggleSport(this)" style="padding: 1rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏓</div>
+                                    <div style="font-weight: 600; color: var(--text-dark);">Pickleball</div>
+                                </div>
+                            </div>
+
+                            <div class="card option-card" onclick="toggleSport(this)" style="padding: 1rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎾</div>
+                                    <div style="font-weight: 600; color: var(--text-dark);">Tennis</div>
+                                </div>
+                            </div>
+
+                            <div class="card option-card" onclick="toggleSport(this)" style="padding: 1rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏃</div>
+                                    <div style="font-weight: 600; color: var(--text-dark);">Running</div>
+                                </div>
+                            </div>
+
+                            <div class="card option-card" onclick="toggleSport(this)" style="padding: 1rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🥏</div>
+                                    <div style="font-weight: 600; color: var(--text-dark);">Ultimate</div>
+                                </div>
+                            </div>
+
+                            <div class="card option-card" onclick="toggleSport(this)" style="padding: 1rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⛳</div>
+                                    <div style="font-weight: 600; color: var(--text-dark);">Golf</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="nextStep('flow1', 3)" style="margin-top: 1.5rem;">Continue</button>
+                    </div>
+
+                    <!-- Screen 3: Travel Distance -->
+                    <div class="flow1-step step-3" style="display: none;">
+                        <div class="screen-header">
+                            <button class="back-btn" onclick="nextStep('flow1', 2)">←</button>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 33%;"></div>
+                            </div>
+                            <div style="width: 36px;"></div>
+                        </div>
+
+                        <div class="step-indicator">
+                            <div class="step-dots">
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot active"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                            </div>
+                        </div>
+
+                        <h2 class="screen-title">How far will you travel?</h2>
+                        <p class="screen-subtitle">We'll prioritize activities within your preferred distance</p>
+
+                        <div style="margin: 2rem 0;">
+                            <div style="text-align: center; margin-bottom: 1.5rem;">
+                                <div style="font-size: 3rem; color: var(--primary); font-weight: 700; margin-bottom: 0.5rem;" id="distanceValue">5 miles</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">About 10 minutes by car</div>
+                            </div>
+
+                            <input type="range" min="1" max="20" value="5" class="slider" id="distanceSlider" oninput="updateDistance(this.value)">
+                            
+                            <div class="slider-labels" style="margin-top: 1rem;">
+                                <span>1 mi</span>
+                                <span>10 mi</span>
+                                <span>20 mi</span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="font-size: 1rem; margin-bottom: 1rem; color: var(--text-dark);">📍 Within 5 miles of you:</h3>
+                            <div class="stat-grid">
+                                <div class="stat-box">
+                                    <div class="stat-value">18</div>
+                                    <div class="stat-label">Volleyball Groups</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-value">12</div>
+                                    <div class="stat-label">Basketball Groups</div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 0.75rem; padding: 0.75rem; background: var(--bg-cream); border-radius: 8px; text-align: center;">
+                                <small style="color: var(--text-medium);">💡 Most people choose 3-8 miles</small>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>🚗 Don't worry, you can always adjust this later!</strong>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-medium);">We'll show you activities slightly beyond your range if they're a perfect social fit.</p>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="nextStep('flow1', 4)" style="margin-top: 1.5rem;">Continue</button>
+                    </div>
+
+                    <!-- Screen 4: Social Motivation Assessment -->
+                    <div class="flow1-step step-4" style="display: none;">
+                        <div class="screen-header">
+                            <button class="back-btn" onclick="nextStep('flow1', 3)">←</button>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 50%;"></div>
+                            </div>
+                            <div style="width: 36px;"></div>
+                        </div>
+
+                        <div class="step-indicator">
+                            <div class="step-dots">
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot active"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                            </div>
+                        </div>
+
+                        <h2 class="screen-title">What brings you here?</h2>
+                        <p class="screen-subtitle">Help us understand what matters most to you. There's no wrong answer!</p>
+
+                        <div class="card option-card" onclick="selectOption(this)">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; padding-right: 2rem;">🌟 Primarily Social</h3>
+                            <p style="color: var(--text-medium); font-size: 0.9rem;">I'm here to meet people and make friends. The sport is just the way to connect!</p>
+                            <div class="tag-cloud" style="margin-top: 0.75rem;">
+                                <span class="badge badge-secondary">Friendship-focused</span>
+                                <span class="badge badge-accent">Community builder</span>
+                            </div>
+                        </div>
+
+                        <div class="card option-card selected" onclick="selectOption(this)">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; padding-right: 2rem;">⚖️ Balanced</h3>
+                            <p style="color: var(--text-medium); font-size: 0.9rem;">I want both: good activity AND good people. Equal parts fitness and friendship.</p>
+                            <div class="tag-cloud" style="margin-top: 0.75rem;">
+                                <span class="badge badge-primary">Best of both worlds</span>
+                                <span class="badge badge-success">Recommended</span>
+                            </div>
+                        </div>
+
+                        <div class="card option-card" onclick="selectOption(this)">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; padding-right: 2rem;">🎯 Activity-Focused</h3>
+                            <p style="color: var(--text-medium); font-size: 0.9rem;">I'm here for the sport itself. Social connections are a nice bonus but not my main goal.</p>
+                            <div class="tag-cloud" style="margin-top: 0.75rem;">
+                                <span class="badge badge-accent">Performance-minded</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="nextStep('flow1', 5)" style="margin-top: 1.5rem;">Continue</button>
+                    </div>
+
+                    <!-- Screen 5: Competition Comfort Level -->
+                    <div class="flow1-step step-5" style="display: none;">
+                        <div class="screen-header">
+                            <button class="back-btn" onclick="nextStep('flow1', 4)">←</button>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 66%;"></div>
+                            </div>
+                            <div style="width: 36px;"></div>
+                        </div>
+
+                        <div class="step-indicator">
+                            <div class="step-dots">
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot active"></div>
+                                <div class="step-dot"></div>
+                            </div>
+                        </div>
+
+                        <h2 class="screen-title">How do you feel about competition?</h2>
+                        <p class="screen-subtitle">This helps us match you with the right group vibe</p>
+
+                        <div class="slider-container">
+                            <div class="slider-labels">
+                                <span>Just for fun</span>
+                                <span>Balanced</span>
+                                <span>Love to compete</span>
+                            </div>
+                            <input type="range" min="1" max="5" value="3" class="slider" id="competitionSlider">
+                        </div>
+
+                        <div class="info-box">
+                            <strong>💡 Your current vibe: Balanced competitor</strong>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-medium);">You enjoy friendly competition but aren't overly intense. Perfect for recreational leagues!</p>
+                        </div>
+
+                        <h3 style="font-size: 1.1rem; margin: 2rem 0 1rem; color: var(--text-dark);">How comfortable are you with:</h3>
+
+                        <div class="card">
+                            <div style="margin-bottom: 1rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span style="font-weight: 500;">Trying new sports</span>
+                                    <span style="color: var(--primary); font-weight: 600;">High</span>
+                                </div>
+                                <div style="height: 6px; background: var(--border); border-radius: 3px; overflow: hidden;">
+                                    <div style="height: 100%; width: 80%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span style="font-weight: 500;">Joining existing groups</span>
+                                    <span style="color: var(--accent); font-weight: 600;">Medium</span>
+                                </div>
+                                <div style="height: 6px; background: var(--border); border-radius: 3px; overflow: hidden;">
+                                    <div style="height: 100%; width: 60%; background: linear-gradient(90deg, var(--accent), #FFE66D); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span style="font-weight: 500;">Making mistakes while learning</span>
+                                    <span style="color: var(--primary); font-weight: 600;">High</span>
+                                </div>
+                                <div style="height: 6px; background: var(--border); border-radius: 3px; overflow: hidden;">
+                                    <div style="height: 100%; width: 85%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="nextStep('flow1', 6)" style="margin-top: 1.5rem;">Continue</button>
+                    </div>
+
+                    <!-- Screen 6: Local Community Preview -->
+                    <div class="flow1-step step-6" style="display: none;">
+                        <div class="screen-header">
+                            <button class="back-btn" onclick="nextStep('flow1', 5)">←</button>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 83%;"></div>
+                            </div>
+                            <div style="width: 36px;"></div>
+                        </div>
+
+                        <div class="step-indicator">
+                            <div class="step-dots">
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot active"></div>
+                            </div>
+                        </div>
+
+                        <h2 class="screen-title">Your local community</h2>
+                        <p class="screen-subtitle">Based on your preferences, here's what's happening near you</p>
+
+                        <div class="info-box" style="background: linear-gradient(135deg, var(--primary-light) 0%, #FFB088 100%); border-left-color: var(--primary);">
+                            <strong>🎯 Filtered for: Volleyball & Basketball within 5 miles</strong>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-dark);">We're showing you groups that match your sport interests and distance preference</p>
+                        </div>
+
+                        <div class="stat-grid">
+                            <div class="stat-box">
+                                <div class="stat-value">18</div>
+                                <div class="stat-label">Volleyball Groups</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">Basketball Groups</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value">91%</div>
+                                <div class="stat-label">Welcoming Rating</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value">15</div>
+                                <div class="stat-label">Great Matches</div>
+                            </div>
+                        </div>
+
+                        <h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: var(--text-dark);">🎯 Perfect matches for you:</h3>
+
+                        <div class="card" style="cursor: pointer;" onclick="nextStep('flow1', 7)">
+                            <div style="display: flex; gap: 1rem;">
+                                <div style="font-size: 3rem;">🏐</div>
+                                <div style="flex: 1;">
+                                    <h4 style="margin-bottom: 0.5rem; color: var(--text-dark);">Wednesday Volleyball</h4>
+                                    <div class="tag-cloud" style="margin: 0.5rem 0;">
+                                        <span class="badge badge-success">Newcomer-friendly</span>
+                                        <span class="badge badge-primary">Social vibe</span>
+                                        <span class="badge badge-accent">Balanced</span>
+                                    </div>
+                                    <p style="font-size: 0.85rem; color: var(--text-medium); margin: 0.5rem 0;">Mixed skill, relaxed competition, great for making friends</p>
+                                    <div style="display: flex; gap: 1rem; margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-light);">
+                                        <span>📍 2.3 mi away</span>
+                                        <span>👥 14 members</span>
+                                        <span>⭐ 4.9/5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div style="display: flex; gap: 1rem;">
+                                <div style="font-size: 3rem;">🏀</div>
+                                <div style="flex: 1;">
+                                    <h4 style="margin-bottom: 0.5rem; color: var(--text-dark);">Tuesday Night Hoops</h4>
+                                    <div class="tag-cloud" style="margin: 0.5rem 0;">
+                                        <span class="badge badge-success">All skill levels</span>
+                                        <span class="badge badge-primary">Social first</span>
+                                    </div>
+                                    <p style="font-size: 0.85rem; color: var(--text-medium); margin: 0.5rem 0;">Pickup games, rotating teams, post-game hangouts</p>
+                                    <div style="display: flex; gap: 1rem; margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-light);">
+                                        <span>📍 3.8 mi away</span>
+                                        <span>👥 19 members</span>
+                                        <span>⭐ 4.7/5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="nextStep('flow1', 7)" style="margin-top: 1.5rem;">View top match</button>
+                    </div>
+
+                    <!-- Screen 7: First Activity Recommendation -->
+                    <div class="flow1-step step-7" style="display: none;">
+                        <div class="screen-header">
+                            <button class="back-btn" onclick="nextStep('flow1', 6)">←</button>
+                            <div style="flex: 1;"></div>
+                            <div style="width: 36px;"></div>
+                        </div>
+
+                        <div class="activity-image">🏐</div>
+
+                        <h2 class="screen-title">Wednesday Volleyball</h2>
+                        <p class="screen-subtitle">This group matches your social-first, balanced vibe perfectly!</p>
+
+                        <div class="card" style="background: linear-gradient(135deg, var(--success) 0%, #B8EFE6 100%);">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">95%</div>
+                                <strong style="color: var(--text-dark);">Social Fit Match</strong>
+                                <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-dark);">Based on your preferences, this group is an excellent match for you!</p>
+                            </div>
+                        </div>
+
+                        <h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: var(--text-dark);">Why this is perfect for you:</h3>
+
+                        <div class="social-indicator">
+                            <div class="indicator-icon indicator-high">🤝</div>
+                            <div>
+                                <strong style="display: block; color: var(--text-dark);">Welcoming Culture</strong>
+                                <small style="color: var(--text-light);">New members join every month and love it</small>
+                            </div>
+                        </div>
+
+                        <div class="social-indicator">
+                            <div class="indicator-icon indicator-high">⚖️</div>
+                            <div>
+                                <strong style="display: block; color: var(--text-dark);">Balanced Competition</strong>
+                                <small style="color: var(--text-light);">Fun and competitive without being intense</small>
+                            </div>
+                        </div>
+
+                        <div class="social-indicator">
+                            <div class="indicator-icon indicator-high">👥</div>
+                            <div>
+                                <strong style="display: block; color: var(--text-dark);">Social-First Group</strong>
+                                <small style="color: var(--text-light);">Group hangs out after games regularly</small>
+                            </div>
+                        </div>
+
+                        <div class="testimonial">
+                            "I was nervous about joining but everyone was so welcoming! Now these are my favorite people to hang with."
+                            <div class="testimonial-author">— Sarah, joined 3 months ago</div>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="alert('Perfect! This would take you to the full activity detail page (Flow 2)')" style="margin-top: 1rem;">Learn more about this group</button>
+                        <button class="btn btn-secondary" onclick="nextStep('flow1', 6)" style="margin-top: 0.75rem;">See other matches</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLOW 2: Activity Detail & Culture Preview -->
+        <div id="flow2" class="wireframe-container">
+            <div class="phone-frame">
+                <div class="screen">
+                    <div class="screen-header">
+                        <button class="back-btn">←</button>
+                        <div style="flex: 1;"></div>
+                        <button class="back-btn">⋮</button>
+                    </div>
+
+                    <div class="activity-image">🏐</div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                        <div>
+                            <h2 class="screen-title" style="margin-bottom: 0.5rem;">Wednesday Volleyball</h2>
+                            <div style="display: flex; gap: 0.5rem; align-items: center; color: var(--text-light); font-size: 0.9rem;">
+                                <span>⭐ 4.9</span>
+                                <span>•</span>
+                                <span>14 members</span>
+                                <span>•</span>
+                                <span>2.3 mi</span>
+                            </div>
+                        </div>
+                        <div class="badge badge-success">95% Match</div>
+                    </div>
+
+                    <div class="tag-cloud">
+                        <span class="badge badge-success">Newcomer-friendly</span>
+                        <span class="badge badge-primary">Social vibe</span>
+                        <span class="badge badge-accent">Mixed skill</span>
+                    </div>
+
+                    <div class="card" style="background: linear-gradient(135deg, var(--success) 0%, #B8EFE6 100%); margin-top: 1.5rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--text-dark);">🎯 Group Culture</h3>
+                        
+                        <div class="stat-grid">
+                            <div class="stat-box" style="background: white;">
+                                <div class="stat-value" style="font-size: 1.2rem;">Low</div>
+                                <div class="stat-label">Competition Intensity</div>
+                            </div>
+                            <div class="stat-box" style="background: white;">
+                                <div class="stat-value" style="font-size: 1.2rem;">High</div>
+                                <div class="stat-label">Social Focus</div>
+                            </div>
+                            <div class="stat-box" style="background: white;">
+                                <div class="stat-value" style="font-size: 1.2rem;">All</div>
+                                <div class="stat-label">Skill Levels</div>
+                            </div>
+                            <div class="stat-box" style="background: white;">
+                                <div class="stat-value" style="font-size: 1.2rem;">5+</div>
+                                <div class="stat-label">New This Year</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: var(--text-dark);">What to expect:</h3>
+
+                    <div class="info-box">
+                        <strong>👋 First-Timer Welcome</strong>
+                        <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-medium);">Sarah (our community ambassador) will greet you, introduce you around, and make sure you feel included. No awkward standing alone!</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 style="margin-bottom: 0.75rem; color: var(--text-dark);">📋 What you need to know:</h4>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-medium); line-height: 1.8;">
+                            <li>We rotate teams each week so everyone plays together</li>
+                            <li>It's totally fine to sit out a game if you need a break</li>
+                            <li>Bring water, we provide the ball and net</li>
+                            <li>Most people grab pizza after at Tony's down the street</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: var(--text-dark);">What people love:</h3>
+
+                    <div class="testimonial">
+                        "The best thing about this group is that nobody takes it too seriously. We play hard but laugh more. I've made genuine friends here."
+                        <div class="testimonial-author">— Mike, been playing for 2 years</div>
+                    </div>
+
+                    <div class="testimonial">
+                        "I was so nervous my first time, but within 10 minutes I felt like I belonged. Everyone was encouraging and just happy I showed up!"
+                        <div class="testimonial-author">— Jessica, joined 4 months ago</div>
+                    </div>
+
+                    <h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: var(--text-dark);">Logistics:</h3>
+
+                    <div class="card">
+                        <div style="margin-bottom: 1rem;">
+                            <strong style="color: var(--text-dark); display: block; margin-bottom: 0.25rem;">📅 When</strong>
+                            <span style="color: var(--text-medium);">Every Wednesday, 6:30 PM - 8:00 PM</span>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <strong style="color: var(--text-dark); display: block; margin-bottom: 0.25rem;">📍 Where</strong>
+                            <span style="color: var(--text-medium);">Central Park Courts (outdoor, covered)</span>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <strong style="color: var(--text-dark); display: block; margin-bottom: 0.25rem;">💰 Cost</strong>
+                            <span style="color: var(--text-medium);">$8 per session (covers court rental)</span>
+                        </div>
+                        <div>
+                            <strong style="color: var(--text-dark); display: block; margin-bottom: 0.25rem;">👟 What to bring</strong>
+                            <span style="color: var(--text-medium);">Athletic shoes (no cleats), water, and good vibes!</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" style="margin-top: 1.5rem;">Join this Wednesday (Feb 5)</button>
+                    <button class="btn btn-secondary" style="margin-top: 0.75rem;">Ask organizer a question</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLOW 3: Post-Activity Belonging Feedback -->
+        <div id="flow3" class="wireframe-container">
+            <div class="phone-frame">
+                <div class="screen" id="flow3-screen">
+                    <!-- Screen 1: How Did It Go -->
+                    <div class="flow3-step step-1">
+                        <div style="text-align: center; margin: 2rem 0 1.5rem;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">🏐</div>
+                            <h2 class="screen-title">How was volleyball?</h2>
+                            <p class="screen-subtitle">We'd love to hear about your experience!</p>
+                        </div>
+
+                        <h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: var(--text-dark);">How did you feel about the activity?</h3>
+
+                        <div class="feeling-selector">
+                            <div class="feeling-btn" onclick="selectFeeling(this, 'activity')">
+                                <span class="feeling-emoji">😐</span>
+                                <span class="feeling-label">Meh</span>
+                            </div>
+                            <div class="feeling-btn" onclick="selectFeeling(this, 'activity')">
+                                <span class="feeling-emoji">🙂</span>
+                                <span class="feeling-label">Good</span>
+                            </div>
+                            <div class="feeling-btn selected" onclick="selectFeeling(this, 'activity')">
+                                <span class="feeling-emoji">😊</span>
+                                <span class="feeling-label">Great</span>
+                            </div>
+                            <div class="feeling-btn" onclick="selectFeeling(this, 'activity')">
+                                <span class="feeling-emoji">🤩</span>
+                                <span class="feeling-label">Amazing!</span>
+                            </div>
+                        </div>
+
+                        <h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: var(--text-dark);">How did you feel socially?</h3>
+
+                        <div class="feeling-selector">
+                            <div class="feeling-btn" onclick="selectFeeling(this, 'social')">
+                                <span class="feeling-emoji">😟</span>
+                                <span class="feeling-label">Awkward</span>
+                            </div>
+                            <div class="feeling-btn" onclick="selectFeeling(this, 'social')">
+                                <span class="feeling-emoji">😊</span>
+                                <span class="feeling-label">Comfortable</span>
+                            </div>
+                            <div class="feeling-btn selected" onclick="selectFeeling(this, 'social')">
+                                <span class="feeling-emoji">🤗</span>
+                                <span class="feeling-label">Welcomed</span>
+                            </div>
+                            <div class="feeling-btn" onclick="selectFeeling(this, 'social')">
+                                <span class="feeling-emoji">❤️</span>
+                                <span class="feeling-label">Belonged</span>
+                            </div>
+                        </div>
+
+                        <div class="card" style="margin-top: 1.5rem;">
+                            <label style="display: block; font-weight: 500; margin-bottom: 0.75rem; color: var(--text-dark);">Anything you want to share? (optional)</label>
+                            <textarea style="width: 100%; min-height: 80px; border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem; font-family: inherit; font-size: 0.9rem; resize: vertical;" placeholder="Tell us more about your experience..."></textarea>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="nextStep('flow3', 2)" style="margin-top: 1.5rem;">Submit feedback</button>
+                    </div>
+
+                    <!-- Screen 2: Belonging Feedback -->
+                    <div class="flow3-step step-2" style="display: none;">
+                        <div class="celebration-card">
+                            <div class="celebration-icon">🎉</div>
+                            <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-dark);">Great news!</h2>
+                            <p style="color: var(--text-medium); margin: 0;">The group loved having you there</p>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-dark);">💚 Positive feedback from the group:</h3>
+                            
+                            <div style="background: var(--bg-cream); padding: 1rem; border-radius: 12px; margin-bottom: 0.75rem; border-left: 4px solid var(--primary);">
+                                <p style="color: var(--text-dark); margin-bottom: 0.5rem; font-weight: 500;">"Great energy and team spirit!"</p>
+                                <small style="color: var(--text-light);">— Sarah (organizer)</small>
+                            </div>
+
+                            <div style="background: var(--bg-cream); padding: 1rem; border-radius: 12px; margin-bottom: 0.75rem; border-left: 4px solid var(--secondary);">
+                                <p style="color: var(--text-dark); margin-bottom: 0.5rem; font-weight: 500;">"Fun to play with, hope they come back!"</p>
+                                <small style="color: var(--text-light);">— Mike</small>
+                            </div>
+
+                            <div style="background: var(--bg-cream); padding: 1rem; border-radius: 12px; border-left: 4px solid var(--accent);">
+                                <p style="color: var(--text-dark); margin-bottom: 0.5rem; font-weight: 500;">"Really positive addition to the group"</p>
+                                <small style="color: var(--text-light);">— Jessica</small>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>✨ You're making great progress!</strong>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-medium);">3 people specifically mentioned they enjoyed playing with you. That's a strong sign you're fitting in well!</p>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="nextStep('flow3', 3)" style="margin-top: 1.5rem;">View my belonging progress</button>
+                        <button class="btn btn-secondary" onclick="alert('This would RSVP for next Wednesday')" style="margin-top: 0.75rem;">Sign up for next week</button>
+                    </div>
+
+                    <!-- Screen 3: Belonging Dashboard -->
+                    <div class="flow3-step step-3" style="display: none;">
+                        <h2 class="screen-title">Your Journey</h2>
+                        <p class="screen-subtitle">Track your integration into the community</p>
+
+                        <div class="card" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: white; text-align: center;">
+                            <div class="progress-circle" style="background: conic-gradient(white 0deg, white 270deg, rgba(255,255,255,0.3) 270deg);">
+                                <span class="progress-text" style="color: var(--primary);">75%</span>
+                            </div>
+                            <h3 style="margin-bottom: 0.5rem;">Becoming a Regular</h3>
+                            <p style="opacity: 0.9; font-size: 0.9rem;">You're well on your way to being a valued community member!</p>
+                        </div>
+
+                        <h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: var(--text-dark);">🎯 Your milestones:</h3>
+
+                        <div class="card">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--success) 0%, #B8EFE6 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">✓</div>
+                                <div style="flex: 1;">
+                                    <strong style="display: block; color: var(--text-dark);">First session attended</strong>
+                                    <small style="color: var(--text-light);">Completed 1 week ago</small>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--success) 0%, #B8EFE6 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">✓</div>
+                                <div style="flex: 1;">
+                                    <strong style="display: block; color: var(--text-dark);">Received positive feedback</strong>
+                                    <small style="color: var(--text-light);">From 3 community members</small>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--success) 0%, #B8EFE6 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">✓</div>
+                                <div style="flex: 1;">
+                                    <strong style="display: block; color: var(--text-dark);">Made social connections</strong>
+                                    <small style="color: var(--text-light);">2 people added you as a friend</small>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="width: 40px; height: 40px; background: var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-light);">○</div>
+                                <div style="flex: 1;">
+                                    <strong style="display: block; color: var(--text-dark);">Attended 5 sessions</strong>
+                                    <small style="color: var(--text-light);">3 more to go!</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: var(--text-dark);">💡 Next steps to deepen connections:</h3>
+
+                        <div class="card option-card">
+                            <h4 style="margin-bottom: 0.5rem; color: var(--text-dark);">Join the post-game hangout</h4>
+                            <p style="color: var(--text-medium); font-size: 0.9rem; margin: 0;">Most of the group grabs pizza at Tony's after. Great chance to chat off the court!</p>
+                        </div>
+
+                        <div class="card option-card">
+                            <h4 style="margin-bottom: 0.5rem; color: var(--text-dark);">Connect outside volleyball</h4>
+                            <p style="color: var(--text-medium); font-size: 0.9rem; margin: 0;">Mike and Sarah also play frisbee on Saturdays. Want an intro?</p>
+                        </div>
+
+                        <button class="btn btn-primary" style="margin-top: 1.5rem;">Explore more activities</button>
+                        <button class="btn btn-secondary" style="margin-top: 0.75rem;">Invite a friend to join</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showWireframe(flowId) {
+            // Hide all wireframes
+            document.querySelectorAll('.wireframe-container').forEach(container => {
+                container.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected wireframe
+            document.getElementById(flowId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Reset to first step
+            if (flowId === 'flow1') {
+                nextStep('flow1', 1);
+            } else if (flowId === 'flow3') {
+                nextStep('flow3', 1);
+            }
+        }
+
+        function nextStep(flowId, stepNumber) {
+            const screen = document.getElementById(`${flowId}-screen`);
+            const steps = screen.querySelectorAll(`.${flowId}-step`);
+            
+            steps.forEach(step => {
+                step.style.display = 'none';
+            });
+            
+            steps[stepNumber - 1].style.display = 'block';
+            
+            // Scroll to top of screen
+            screen.scrollTop = 0;
+        }
+
+        function selectOption(element) {
+            // Remove selected class from siblings
+            const siblings = element.parentElement.querySelectorAll('.option-card');
+            siblings.forEach(sibling => {
+                sibling.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked element
+            element.classList.add('selected');
+        }
+
+        function selectFeeling(element, type) {
+            // Remove selected class from siblings
+            const siblings = element.parentElement.querySelectorAll('.feeling-btn');
+            siblings.forEach(sibling => {
+                sibling.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked element
+            element.classList.add('selected');
+        }
+
+        function toggleSport(element) {
+            // Toggle selected class on clicked element
+            element.classList.toggle('selected');
+        }
+
+        function updateDistance(value) {
+            const distanceValueEl = document.getElementById('distanceValue');
+            const distanceText = value == 1 ? '1 mile' : `${value} miles`;
+            distanceValueEl.textContent = distanceText;
+            
+            // Update time estimate
+            const timeElement = distanceValueEl.nextElementSibling;
+            const minutes = Math.round(value * 2); // Rough estimate: 2 min per mile
+            timeElement.textContent = `About ${minutes} minutes by car`;
+        }
+    </script>
+</body>
+</html>
